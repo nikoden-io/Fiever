@@ -6,11 +6,19 @@
 
 - [Unreleased](#unreleased)
 - [Released](#released)
-  - [v0.1.0 - 2024-27-09](#v010---2024-27-09)
+  - [v0.1.0 - 2024-04-10](#v010---2024-04-10)
 
 ---
 
 ## Unreleased
+
+
+
+---
+
+## Released
+
+### v0.1.0 - 2024-04-10
 
 - Added new entities: **University**, **Course**, **Passport**, and **StudentCourse** to represent various relationships in our domain model.
   - **University** entity represents educational institutions that students can be enrolled in.
@@ -32,10 +40,6 @@
 - Updated API controllers to expose new endpoints:
   - **UniversityController**, **CourseController**, and **PassportController** were added to handle HTTP requests for CRUD operations on universities, courses, and passports.
   - Added endpoint in **PassportController** to fetch passport information by student ID.
-
----
-
-## Released
 
 - Initial project configuration
   - Create empty dotnet 9.0 solution which contains:
