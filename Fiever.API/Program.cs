@@ -148,6 +148,12 @@ builder.Services.AddScoped<IPassportRepository>(serviceProvider =>
     var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
     return new PassportRepository(connectionString, context);
 });
+builder.Services.AddScoped<IStudentRepository>(serviceProvider =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
+    return new StudentRepository(connectionString, context);
+});
 builder.Services.AddScoped<IStudentCourseRepository>(serviceProvider =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

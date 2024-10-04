@@ -95,4 +95,43 @@ public class StudentController : ControllerBase
         var result = await _studentRepository.GetStudentsAsync();
         return Ok(ApiResponse<List<Student>>.SuccessResponse(result, Messages.FetchSuccess));
     }
+
+    // Get student by ID
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetStudentById(string id)
+    {
+        var student = await _studentAppService.GetStudentByIdAsync(id);
+        if (student == null)
+            return NotFound(ApiResponse<StudentDTO>.ErrorResponse(Messages.NotFound));
+
+        return Ok(ApiResponse<StudentDTO>.SuccessResponse(student, Messages.FetchSuccess));
+    }
+
+    // Update student by ID
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateStudent(string id, [FromBody] StudentDTO studentDto)
+    {
+        if (!ModelState.IsValid)
+        {
+            Console.WriteLine("BAD REQUEST REACHED ON UPDATE");
+            return BadRequest(ApiResponse<StudentDTO>.ErrorResponse(Messages.WrongFormat));
+        }
+
+        var updatedStudent = await _studentAppService.UpdateStudentAsync(id, studentDto);
+        if (updatedStudent == null)
+            return NotFound(ApiResponse<StudentDTO>.ErrorResponse(Messages.NotFound));
+
+        return Ok(ApiResponse<StudentDTO>.SuccessResponse(updatedStudent, Messages.UpdateSuccess));
+    }
+
+    // Delete student by ID
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> RemoveStudent(string id)
+    {
+        var result = await _studentAppService.RemoveStudentAsync(id);
+        if (!result)
+            return NotFound(ApiResponse<string>.ErrorResponse(Messages.NotFound));
+
+        return Ok(ApiResponse<string>.SuccessResponse(id, Messages.DeleteSuccess));
+    }
 }

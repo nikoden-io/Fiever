@@ -2,6 +2,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+// Configure HttpClient with SSL validation bypass for development.
+builder.Services.AddHttpClient("FieverApiClient", client =>
+    {
+        // Assuming the API is running locally with this URL. Update accordingly.
+        client.BaseAddress = new Uri("http://localhost:5166");
+    })
+    .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+    {
+        // Bypass SSL validation ONLY for development.
+        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+    });
+
 
 var app = builder.Build();
 
@@ -9,7 +21,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -21,6 +32,6 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 app.MapRazorPages()
-   .WithStaticAssets();
+    .WithStaticAssets();
 
 app.Run();

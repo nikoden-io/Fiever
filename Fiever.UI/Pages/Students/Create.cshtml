@@ -1,0 +1,18 @@
+@page
+@model Fiever.UI.Models.CreateStudentModel
+
+<h2>Create Student</h2>
+
+<partial name="~/Components/Forms/StudentForm.cshtml" model="Model.Student"/>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+        const firstName = document.querySelector('input[name="FirstName"]').value;
+        const lastName = document.querySelector('input[name="LastName"]').value;
+        const email = document.querySelector('input[name="Email"]').value;
+
+        console.log("FirstName:", firstName);
+        console.log("LastName:", lastName);
+        console.log("Email:", email);
+    });
+</script>

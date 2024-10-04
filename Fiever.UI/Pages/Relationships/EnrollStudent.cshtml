@@ -1,0 +1,44 @@
+@page
+@using Fiever.Application.Interfaces.ApplicationServices
+@model Fiever.UI.Models.EnrollStudentModel
+@inject IStudentAppService StudentService
+@inject ICourseAppService CourseService
+@inject IUniversityAppService UniversityService
+
+@{
+    var students = await StudentService.GetStudentsAsync();
+    var universities = await UniversityService.GetUniversitiesAsync();
+    var courses = await CourseService.GetCoursesAsync();
+}
+
+<h2>Enroll Student in Courses</h2>
+<form method="post" asp-action="Enroll">
+    <div class="form-group">
+        <label for="StudentId">Select Student</label>
+        <select asp-for="StudentId" class="form-control">
+            @foreach (var student in students)
+            {
+                <option value="@student.Id">@student.FirstName @student.LastName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="UniversityId">Select University</label>
+        <select asp-for="UniversityId" class="form-control">
+            @foreach (var university in universities)
+            {
+                <option value="@university.Id">@university.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Courses">Select Courses</label>
+        <select asp-for="CourseIds" multiple class="form-control">
+            @foreach (var course in courses)
+            {
+                <option value="@course.Id">@course.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Enroll</button>
+</form>

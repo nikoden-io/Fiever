@@ -12,6 +12,14 @@
 
 ## Unreleased
 
+- **Fiever.UI Razor Project Updates**:
+  - Implemented CRUD functionalities in the Razor Pages for the **Student** entity.
+  - Added a form to create new students, utilizing the `HttpClient` to interact with the **API** endpoints.
+  - Integrated **EditStudent** and **DeleteStudent** Razor pages to enable updating and deleting students directly from the UI.
+  - Implemented dropdown options for selecting courses and universities when enrolling students.
+  - Updated navigation links and implemented related Razor Pages for **Students**, **Courses**, **Universities**, and **Enrollment** operations.
+  - Introduced **HttpClientFactory** for managing API calls in the Razor project, ensuring a separation between UI and backend services.
+  - Added custom error handling and validation to Razor Pages to provide a better user experience.
 
 
 ---

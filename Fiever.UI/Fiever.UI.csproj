@@ -1,13 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <ItemGroup>
-    <ProjectReference Include="..\Fiever.Application\Fiever.Application.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Fiever.Application\Fiever.Application.csproj"/>
+    </ItemGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\Forms\CourseForm.cshtml"/>
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\Forms\StudentForm.cshtml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Pages\Course\"/>
+        <Folder Include="Pages\Universities\"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
 </Project>
